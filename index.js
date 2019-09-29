@@ -47,7 +47,7 @@ exports.sendNotification = functions.firestore.document('/Users/{user_id}/Notifi
 
             // eslint-disable-next-line promise/always-return
             return admin.messaging().sendToDevice(token_id, payload).then(result => {
-                // console.log("Notification Send.");
+                console.log("Notification Send.");
 
             });
         });
