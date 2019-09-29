@@ -13,6 +13,7 @@ exports.sendNotification = functions.firestore.document('/Users/{user_id}/Notifi
     return admin.firestore().collection("Users").doc(user_id).collection("Notifications").doc(notification_id).get().then(response => {
 
         const from_user_id = response.data().from;
+        const from_message = response.data().message;
         // console.log(from_user_id);
 
         const from_data = admin.firestore().collection("Users").doc(from_user_id).get();
@@ -36,7 +37,7 @@ exports.sendNotification = functions.firestore.document('/Users/{user_id}/Notifi
             const payload = {
                 notification: {
                     title: from_name,
-                    body: "has sent you request",
+                    body: from_message,
                     icon: "default",
                     click_action: "in.tvac.akshaye.lapitchat_TARGET_NOTIFICATION"
                 },
